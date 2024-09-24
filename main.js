@@ -1,46 +1,43 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Coloridas</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden; /* Para evitar barras de rolagem */
-        }
-    </style>
-</head>
-<body>
-    <script>
-        function criarFlor(x, y, cor) {
-            const flor = document.createElement('div');
-            flor.style.position = 'absolute';
-            flor.style.width = '50px';
-            flor.style.height = '50px';
-            flor.style.borderRadius = '50%';
-            flor.style.backgroundColor = cor;
-            flor.style.left = `${x}px`;
-            flor.style.top = `${y}px`;
-            flor.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
-            
-            document.body.appendChild(flor);
-        }
+// Criando um novo elemento h1
+let novoElemento = document.createElement('h1');
+// Alterando o conteúdo de texto do elemento
+novoElemento.innerText = 'Hello, World! English! (Inglês) Ok?!';
+// Selecionando o elemento body
+let elementoBody = document.body;
+// Colocando o novo elemento no body
+elementoBody.appendChild(novoElemento);
 
-        function gerarFlores(numFlores) {
-            const cores = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink'];
-            
-            for (let i = 0; i < numFlores; i++) {
-                const x = Math.random() * window.innerWidth;
-                const y = Math.random() * window.innerHeight;
-                const cor = cores[Math.floor(Math.random() * cores.length)];
-                criarFlor(x, y, cor);
-            }
-        }
+// Função para criar uma bolinha colorida
+function criarBola() {
+    // Criando um novo elemento div
+    let novaBola = document.createElement('div');
 
-        // Chama a função para gerar 20 flores
-        gerarFlores(20);
-    </script>
-</body>
-</html>
+    // Definindo estilos para a bolinha
+    novaBola.style.width = '50px'; // Largura da bolinha
+    novaBola.style.height = '50px'; // Altura da bolinha
+    novaBola.style.borderRadius = '50%'; // Para fazer um círculo
+    novaBola.style.position = 'absolute'; // Para posicionar a bolinha
+    novaBola.style.top = Math.random() * window.innerHeight + 'px'; // Posição aleatória na altura
+    novaBola.style.left = Math.random() * window.innerWidth + 'px'; // Posição aleatória na largura
+    novaBola.style.backgroundColor = gerarCorAleatoria(); // Cor aleatória
 
+    // Adicionando a bolinha ao body
+    document.body.appendChild(novaBola);
+}
+
+// Função para gerar uma cor aleatória
+function gerarCorAleatoria() {
+    const letras = '0123456789ABCDEF';
+    let cor = '#';
+    for (let i = 0; i < 6; i++) {
+        cor += letras[Math.floor(Math.random() * 16)];
+    }
+    return cor;
+}
+
+// Criar múltiplas bolinhas ao carregar a página
+window.onload = function() {
+    for (let i = 0; i < 20; i++) { // Cria 20 bolinhas
+        criarBola();
+    }
+};
